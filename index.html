@@ -274,26 +274,44 @@ function createCard(item) {
   return card;
 }
 
-function renderResults(items, images) {
+async function renderImages(query) {
+  try {
+    // Используем API Яндекса (напрямую из браузера)
+    const url = `https://yandex.ru/images/search?text=${encodeURIComponent(query)}&rpt=imageview&format=json&request={"blocks":[{"block":"serp-controller"}]}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    // Пытаемся вытащить ссылки из структуры Яндекса
+    let images = [];
+    const serpList = data?.blocks?.[0]?.params?.serpList?.items;
+    if (serpList) {
+      for (let i = 0; i < Math.min(3, serpList.length); i++) {
+        if (serpList[i].origUrl) images.push(serpList[i].origUrl);
+        else if (serpList[i].thumb?.url) images.push(serpList[i].thumb.url);
+      }
+    }
+    
+    if (images.length > 0) {
+      topicImagesEl.innerHTML = '';
+      images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = 'Иллюстрация по теме';
+        img.onerror = function() { 
+           this.src = placeholder('Картинка недоступна'); 
+        };
+        topicImagesEl.appendChild(img);
+      });
+      topicImagesEl.classList.add('open');
+    }
+  } catch (e) {
+    console.log("Yandex error:", e);
+  }
+}
+
+function renderResults(items) {
   statusEl.style.display = 'none';
   resultsEl.innerHTML = '';
-  topicImagesEl.innerHTML = '';
-  topicImagesEl.classList.remove('open');
-
-  // Картинки
-  if (images && images.length > 0) {
-    images.forEach((query, index) => {
-      const img = document.createElement('img');
-      // Используем LoremFlickr для тематических картинок
-      img.src = `https://loremflickr.com/800/600/${encodeURIComponent(query)}?lock=${index}`;
-      img.alt = 'Иллюстрация по теме';
-      img.onerror = function() { 
-         this.src = placeholder('Картинка недоступна'); 
-      };
-      topicImagesEl.appendChild(img);
-    });
-    topicImagesEl.classList.add('open');
-  }
 
   if (!items || items.length === 0) {
     showMessage('Ничего не нашлось. Попробуйте изменить тему или класс.');
@@ -396,16 +414,17 @@ async function doSearch() {
     if (!data.ok) throw new Error(data.error || 'Ошибка при запросе');
     
     // Подбираем теги для картинок
-    let imgQuery = "school";
+    let imgQuery = q;
     const lowerQ = q.toLowerCase();
-    if (lowerQ.includes('цвет') || lowerQ.includes('растен') || lowerQ.includes('фотосинтез')) imgQuery = "biology,plants";
-    else if (lowerQ.includes('дроб') || lowerQ.includes('уравнен') || lowerQ.includes('матем')) imgQuery = "mathematics,numbers";
-    else if (lowerQ.includes('войн') || lowerQ.includes('истори')) imgQuery = "history,ancient";
-    else if (lowerQ.includes('стих') || lowerQ.includes('пушкин')) imgQuery = "literature,books";
-    
-    const topicImages = [imgQuery, imgQuery, imgQuery];
+    if (lowerQ.includes('цвет') || lowerQ.includes('растен') || lowerQ.includes('фотосинтез')) imgQuery = "биология растения цветы";
+    else if (lowerQ.includes('дроб') || lowerQ.includes('уравнен') || lowerQ.includes('матем')) imgQuery = "математика школа числа";
+    else if (lowerQ.includes('войн') || lowerQ.includes('истори')) imgQuery = "история древние книги";
+    else if (lowerQ.includes('стих') || lowerQ.includes('пушкин')) imgQuery = "литература книги поэзия";
 
-    renderResults(data.items, topicImages);
+    // Сначала показываем видео, параллельно грузим картинки
+    renderResults(data.items);
+    await renderImages(imgQuery);
+
   } catch (e) {
     showMessage('Не удалось загрузить. Причина: ' + e.message);
   } finally {
