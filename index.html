@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Медиатитор — видеоуроки и каналы</title>
+<title>Медиатитор — видеоуроки и конспекты</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'PT Sans', Arial, sans-serif; background-color: #fdfcf8; background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); background-size: 24px 24px; color: #222222; line-height: 32px; font-size: 16px; position: relative; min-height: 100vh; overflow-x: hidden; }
   @media (min-width: 768px) { body::before { content: ''; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background-color: #ff9a9a; z-index: 10; } }
-  h1, .logo, .section-title, label, button, .vpn-box h3 { font-family: 'Caveat', cursive; font-weight: 700; }
+  h1, .logo, .section-title, label, button, .vpn-box h3, .tariff-info h3 { font-family: 'Caveat', cursive; font-weight: 700; }
   header { border-bottom: 2px solid #333; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
   .header-inner { max-width: 900px; margin: 0 auto; padding: 16px 20px; display: flex; flex-direction: column; }
   @media (min-width: 768px) { .header-inner { padding-left: 60px; } }
@@ -22,10 +22,6 @@
   .title-wrap { position: relative; margin-bottom: 10px; }
   h1 { font-size: 42px; color: #111; transform: rotate(-1deg); display: inline-block; line-height: 1.2; }
   @media (max-width: 520px) { h1 { font-size: 34px; } }
-  .hand-arrow { position: absolute; width: 80px; height: 60px; fill: none; stroke: #d93025; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; z-index: 5; }
-  .arrow-to-input { top: 10px; left: 380px; transform: rotate(15deg); }
-  .arrow-to-button { bottom: -30px; right: 10px; transform: rotate(-120deg) scale(1.2); }
-  @media (max-width: 768px) { .arrow-to-input, .arrow-to-button { display: none; } }
   .intro-text { font-size: 18px; color: #333; margin-bottom: 24px; background: rgba(253, 252, 248, 0.8); display: inline-block; padding: 0 4px; }
   .form-block { border: 2px solid #555; border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; padding: 20px; margin-bottom: 20px; background: rgba(255, 255, 255, 0.95); position: relative; transform: rotate(0.5deg); box-shadow: 4px 4px 0 rgba(0,0,0,0.05); }
   @media (max-width: 520px) { .form-block { padding: 16px; border-radius: 15px; transform: none; } }
@@ -52,21 +48,26 @@
   .summary-text { font-size: 17px; line-height: 1.6; margin-bottom: 16px; color: #222; }
   .summary-rule { background: rgba(255, 255, 255, 0.6); border-left: 4px solid #1a4d8f; padding: 10px 14px; margin-bottom: 12px; font-weight: 700; color: #1a4d8f; font-size: 16px; }
 
-  /* Стили для каналов */
   .channel-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 30px; }
-  .channel-card { border: 2px solid #555; border-radius: 4px; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.2s; transform: rotate(0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); text-align: center; padding: 16px 10px; text-decoration: none; color: #222; }
+  .channel-card { border: 2px solid #555; border-radius: 4px; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.2s; transform: rotate(0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); text-align: center; padding: 16px 10px; text-decoration: none; color: #222; display: block; position: relative; }
   .channel-card:nth-child(even) { transform: rotate(-0.5deg); }
   .channel-card:hover { transform: translateY(-2px) rotate(0deg); border-color: #1a4d8f; box-shadow: 4px 4px 0 rgba(26,77,143,0.2); }
   .channel-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 3px solid #ddd; }
   .channel-card .name { font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
   .channel-card .subs { font-size: 13px; color: #888; }
 
+  .locked-card { position: relative; }
+  .locked-card .preview, .locked-card img { filter: blur(4px) grayscale(100%); opacity: 0.8; }
+  .lock-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; z-index: 10; text-align: center; border-radius: 4px; padding: 10px; }
+  .lock-overlay svg { width: 30px; height: 30px; fill: #fff; margin-bottom: 8px; }
+  .lock-overlay span { font-family: 'PT Sans', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.2; }
+
   .section-title { font-size: 36px; margin: 30px 0 16px; color: #1a4d8f; border-bottom: 2px solid #333; padding-bottom: 0px; display: inline-block; transform: rotate(-1deg); line-height: 1.2; background: rgba(253, 252, 248, 0.8); }
   @media (max-width: 520px) { .section-title { font-size: 28px; } }
   
   .video-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); margin-bottom: 20px; }
   @media (max-width: 520px) { .video-list { grid-template-columns: 1fr; } }
-  .video-card { border: 2px solid #555; border-radius: 4px; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.2s; transform: rotate(-0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); }
+  .video-card { border: 2px solid #555; border-radius: 4px; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.2s; transform: rotate(-0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); position: relative; }
   .video-card:nth-child(even) { transform: rotate(0.5deg); }
   .video-card:hover { transform: translateY(-2px) rotate(0deg); border-color: #1a4d8f; box-shadow: 4px 4px 0 rgba(26,77,143,0.2); }
   .video-card .preview { width: 100%; aspect-ratio: 16/9; background: #e8e8e8; display: block; object-fit: cover; border-bottom: 2px solid #555; }
@@ -98,7 +99,24 @@
   .vpn-buttons .continue { background: #1a4d8f; color: #fff; border-color: #143c70; }
   .vpn-buttons .continue:hover { background: #143c70; }
 
+  .pay-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 300; }
+  .pay-modal.open { display: flex; }
+  .pay-box { background: #fff; border-radius: 8px; max-width: 400px; width: 100%; padding: 30px; border: 3px solid #333; text-align: center; transform: rotate(-1deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.2); }
+  .pay-box h3 { font-size: 36px; margin-bottom: 10px; color: #b71c1c; }
+  .pay-box p { font-size: 16px; margin-bottom: 20px; }
+  .pay-box .price { font-size: 28px; font-weight: 700; color: #1a4d8f; margin-bottom: 20px; display: block; }
+  .pay-btn { background: #f59e0b; color: #000; font-family: 'PT Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; }
+  .pay-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #b45309; }
+  .pay-close { background: none; border: none; color: #777; margin-top: 15px; cursor: pointer; text-decoration: underline; font-size: 14px; }
+
+  .tariff-info { margin-top: 40px; padding: 20px; background: #fff; border: 2px dashed #555; border-radius: 8px; text-align: center; }
+  .tariff-info h3 { font-size: 26px; color: #1a4d8f; margin-bottom: 10px; }
+  .tariff-info p { font-size: 15px; color: #444; margin-bottom: 8px; }
+  .tariff-info a { color: #1a4d8f; font-weight: bold; }
+
   footer { text-align: center; padding: 24px 20px; color: #777; font-size: 15px; border-top: 2px solid #ccc; font-style: italic; font-family: 'PT Sans', sans-serif; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
+  footer a { color: #1a4d8f; text-decoration: none; font-weight: bold; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -106,14 +124,13 @@
 <header>
   <div class="header-inner">
     <div class="logo">Медиатитор</div>
-    <div class="header-note">Видеоуроки и каналы по школьной программе</div>
+    <div class="header-note">Видеоуроки, каналы и конспекты</div>
   </div>
 </header>
 
 <main>
   <div class="title-wrap">
     <h1>Поиск видеоуроков</h1>
-    <svg class="hand-arrow arrow-to-input" viewBox="0 0 100 80"><path d="M 10,70 Q 30,20 80,30 M 60,10 L 85,30 L 55,45" /></svg>
   </div>
   
   <p class="intro-text">Введите тему урока, выберите класс и источник. Нажмите «Найти».</p>
@@ -152,9 +169,8 @@
       </div>
     </div>
 
-    <div class="form-line" style="position: relative;">
+    <div class="form-line">
       <button class="find" id="go">Найти видеоуроки</button>
-      <svg class="hand-arrow arrow-to-button" viewBox="0 0 100 80"><path d="M 10,70 Q 30,20 80,30 M 60,10 L 85,30 L 55,45" /></svg>
     </div>
   </div>
 
@@ -163,15 +179,34 @@
   </div>
 
   <div id="channelsBlock" style="display:none;">
-    <div class="section-title">Лучшие каналы по теме</div>
+    <div class="section-title">Каналы по теме</div>
     <div id="channelsList" class="channel-list"></div>
   </div>
 
   <div id="status" class="message">Введите тему урока и нажмите «Найти видеоуроки».</div>
   <div id="results"></div>
+
+  <!-- БЛОК УСЛОВИЙ ДЛЯ ЮKASSA -->
+  <div class="tariff-info">
+    <h3>Премиум-подписка «Медиатитор»</h3>
+    <p><b>Стоимость:</b> 199 ₽ в месяц.</p>
+    <p><b>Что входит:</b> Доступ к лучшим 3 видеоурокам по каждой теме и к списку лучших образовательных каналов.</p>
+    <p><b>Как получить:</b> Доступ активируется автоматически на этом устройстве сразу после успешной оплаты.</p>
+    <p style="margin-top: 15px;">
+      <a href="offer.html">Публичная оферта</a> | 
+      <a href="requisites.html">Реквизиты и контакты</a>
+    </p>
+  </div>
+
 </main>
 
-<footer>Медиатитор — видеоуроки и каналы для школьников</footer>
+<footer>
+  <p style="margin-bottom: 10px;">Медиатитор — видеоуроки, каналы и конспекты для школьников</p>
+  <p style="font-size: 14px; font-style: normal;">
+    <a href="requisites.html">Реквизиты и контакты</a> | 
+    <a href="offer.html">Публичная оферта</a>
+  </p>
+</footer>
 
 <div class="window" id="window">
   <div class="window-box">
@@ -195,8 +230,27 @@
   </div>
 </div>
 
+<div class="pay-modal" id="payModal">
+  <div class="pay-box">
+    <h3>Премиум доступ</h3>
+    <p>Откройте лучшие каналы и видеоуроки по подписке.</p>
+    <span class="price">199 ₽ / месяц</span>
+    <button class="pay-btn" id="payBtn">Оформить подписку</button>
+    <button class="pay-close" id="payClose">Закрыть</button>
+  </div>
+</div>
+
 <script>
 const PROXY = 'https://still-band-05c9.emkasemka04.workers.dev';
+
+// ПРОВЕРКА ОПЛАТЫ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('success') === '1') {
+  localStorage.setItem('isSubscribed', 'true');
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
+let isSubscribed = localStorage.getItem('isSubscribed') === 'true';
 
 const $ = id => document.getElementById(id);
 const topicEl = $('topic'), gradeEl = $('grade'), goEl = $('go');
@@ -205,9 +259,9 @@ const summaryBlock = $('summaryBlock'), summaryContent = $('summaryContent');
 const channelsBlock = $('channelsBlock'), channelsList = $('channelsList');
 const windowEl = $('window'), frame = $('frame'), windowTitle = $('windowTitle');
 const openExternal = $('openExternal'), closeWindow = $('closeWindow');
-
 const vpnModal = $('vpnModal'), vpnTitle = $('vpnTitle'), vpnText = $('vpnText');
 const vpnCancel = $('vpnCancel'), vpnContinue = $('vpnContinue');
+const payModal = $('payModal'), payClose = $('payClose'), payBtn = $('payBtn');
 
 function getSource() {
   const checked = document.querySelector('input[name="source"]:checked');
@@ -230,36 +284,19 @@ function showMessage(text) {
   summaryBlock.classList.remove('open');
 }
 
-// --- БАЗА КОНСПЕКТОВ БЕЗ ФОРМУЛ (Чистый текст) ---
 function getHardcodedSummary(query) {
   const q = query.toLowerCase();
-  
-  if (q.includes('фсу') || q.includes('сокращённого умножения') || q.includes('сокращенного умножения')) {
-    return `
-      <div class="summary-title">Конспект: Формулы сокращённого умножения</div>
-      <div class="summary-text">Формулы сокращённого умножения — часто встречающиеся случаи умножения многочленов. Изучаются в школе в курсе алгебры.</div>
-      <div class="summary-rule">📌 Квадрат суммы: (a + b) в квадрате = a в квадрате + 2ab + b в квадрате</div>
-      <div class="summary-rule">📌 Квадрат разности: (a - b) в квадрате = a в квадрате - 2ab + b в квадрате</div>
-      <div class="summary-rule">📌 Разность квадратов: a в квадрате - b в квадрате = (a - b)(a + b)</div>
-    `;
+  if (q.includes('фсу') || q.includes('сокращённого умножения')) {
+    return `<div class="summary-title">Конспект: ФСУ</div>
+            <div class="summary-text">Формулы сокращённого умножения — часто встречающиеся случаи умножения многочленов.</div>
+            <div class="summary-rule">📌 Квадрат суммы: (a + b)² = a² + 2ab + b²</div>
+            <div class="summary-rule">📌 Разность квадратов: a² - b² = (a - b)(a + b)</div>`;
   }
-
   if (q.includes('дроб')) {
-    return `
-      <div class="summary-title">Конспект: Обыкновенные дроби</div>
-      <div class="summary-text">Дробь — это число, состоящее из одной или нескольких равных частей (долей) единицы.</div>
-      <div class="summary-rule">📌 Число над чертой — <b>числитель</b>, под чертой — <b>знаменатель</b>.</div>
-    `;
+    return `<div class="summary-title">Конспект: Обыкновенные дроби</div>
+            <div class="summary-text">Дробь — это число, состоящее из одной или нескольких равных частей единицы.</div>
+            <div class="summary-rule">📌 Число над чертой — <b>числитель</b>, под чертой — <b>знаменатель</b>.</div>`;
   }
-
-  if (q.includes('процент')) {
-    return `
-      <div class="summary-title">Конспект: Проценты</div>
-      <div class="summary-text">Процент — это одна сотая часть числа. Обозначается знаком %.</div>
-      <div class="summary-rule">📌 Чтобы перевести проценты в десятичную дробь, нужно разделить их на 100.</div>
-    `;
-  }
-
   return null;
 }
 
@@ -269,110 +306,130 @@ async function getWikipediaSummary(query) {
     const searchRes = await fetch(searchUrl);
     const searchData = await searchRes.json();
     if (!searchData.query?.search?.length) return null;
-    
     const bestTitle = searchData.query.search[0].title;
     const url = `https://ru.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles=${encodeURIComponent(bestTitle)}`;
     const res = await fetch(url);
     const data = await res.json();
-    
     const pages = data.query?.pages;
     const pageId = pages ? Object.keys(pages)[0] : null;
-    
     if (pageId && pageId !== "-1" && pages[pageId].extract) {
       let text = pages[pageId].extract;
       if (text.length > 600) text = text.substring(0, 600) + '...';
       return text;
     }
     return null;
-  } catch (e) {
-    return null;
-  }
+  } catch (e) { return null; }
 }
 
-function createVideoCard(item) {
+function createVideoCard(item, isPremium) {
   const card = document.createElement('div');
   card.className = 'video-card';
   
-  const img = document.createElement('img');
-  img.className = 'preview'; img.alt = ''; img.loading = 'lazy';
-  img.src = item.thumb || placeholder('Видеоурок');
-  img.onerror = function () { this.src = placeholder('Нет превью'); };
-
-  const info = document.createElement('div');
-  info.className = 'info';
-  const name = document.createElement('div');
-  name.className = 'name'; name.textContent = item.title;
-  const author = document.createElement('div');
-  author.className = 'author'; author.textContent = item.channel || '';
-
-  info.appendChild(name); info.appendChild(author);
-  card.appendChild(img); card.appendChild(info);
-  card.addEventListener('click', () => openVideo(item));
+  if (isPremium && !isSubscribed) {
+    card.classList.add('locked-card');
+    card.innerHTML = `
+      <div class="lock-overlay">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        <span>По подписке</span>
+      </div>
+      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
+      <div class="info">
+        <div class="name">${item.title}</div>
+        <div class="author">${item.channel || ''}</div>
+      </div>
+    `;
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      payModal.classList.add('open');
+    });
+  } else {
+    card.innerHTML = `
+      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
+      <div class="info">
+        <div class="name">${item.title}</div>
+        <div class="author">${item.channel || ''}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openVideo(item));
+  }
+  
   return card;
 }
 
-function createChannelCard(item) {
-  const card = document.createElement('a');
-  card.className = 'channel-card';
-  card.href = item.embed; // Ссылка на канал
-  card.target = '_blank';
+function renderChannels(items) {
+  channelsList.innerHTML = '';
+  if (!items || items.length === 0) { channelsBlock.style.display = 'none'; return; }
   
-  const img = document.createElement('img');
-  img.src = item.thumb || placeholder('Канал');
-  img.alt = item.title;
+  // Берем максимум 6 каналов
+  const top6 = items.slice(0, 6);
   
-  const name = document.createElement('div');
-  name.className = 'name'; name.textContent = item.title;
+  top6.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'channel-card';
+    
+    // Первые 3 (индекс 0, 1, 2) — платные. Остальные (3, 4, 5) — бесплатные.
+    const isPremium = index < 3;
+    
+    if (isPremium && !isSubscribed) {
+      card.classList.add('locked-card');
+      card.innerHTML = `
+        <div class="lock-overlay">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          <span>По подписке</span>
+        </div>
+        <img src="${item.thumb || placeholder('Канал')}" alt="">
+        <div class="name">${item.title}</div>
+        <div class="subs">Перейти на YouTube</div>
+      `;
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        payModal.classList.add('open');
+      });
+    } else {
+      card.innerHTML = `
+        <img src="${item.thumb || placeholder('Канал')}" alt="">
+        <div class="name">${item.title}</div>
+        <div class="subs">Перейти на YouTube</div>
+      `;
+      card.addEventListener('click', () => {
+        window.open(item.embed, '_blank');
+      });
+    }
+    
+    channelsList.appendChild(card);
+  });
   
-  const subs = document.createElement('div');
-  subs.className = 'subs'; subs.textContent = 'Перейти на YouTube';
-
-  card.appendChild(img); card.appendChild(name); card.appendChild(subs);
-  return card;
+  channelsBlock.style.display = 'block';
 }
 
 function renderVideos(items) {
   resultsEl.innerHTML = '';
-  if (!items || items.length === 0) {
-    resultsEl.innerHTML = '<div class="message" style="display:block;">Видеоуроки не найдены.</div>';
-    return;
-  }
-
+  if (!items || items.length === 0) return;
+  
   const topItems = items.slice(0, 3);
   const otherItems = items.slice(3);
-
+  
   const topTitle = document.createElement('div');
   topTitle.className = 'section-title';
-  topTitle.textContent = 'Лучшие видеоуроки';
+  topTitle.innerHTML = 'Лучшие видеоуроки <span style="font-size: 18px; color: #b71c1c; font-family: \'PT Sans\'; vertical-align: middle; margin-left: 10px;">🔒 По подписке</span>';
   resultsEl.appendChild(topTitle);
-
+  
   const topGrid = document.createElement('div');
   topGrid.className = 'video-list';
-  topItems.forEach(item => topGrid.appendChild(createVideoCard(item)));
+  topItems.forEach(item => topGrid.appendChild(createVideoCard(item, true)));
   resultsEl.appendChild(topGrid);
 
   if (otherItems.length > 0) {
     const otherTitle = document.createElement('div');
     otherTitle.className = 'section-title';
-    otherTitle.textContent = 'Другие видеоуроки';
+    otherTitle.textContent = 'Другие видеоуроки (Бесплатно)';
     resultsEl.appendChild(otherTitle);
-
+    
     const otherGrid = document.createElement('div');
     otherGrid.className = 'video-list';
-    otherItems.forEach(item => otherGrid.appendChild(createVideoCard(item)));
+    otherItems.forEach(item => otherGrid.appendChild(createVideoCard(item, false)));
     resultsEl.appendChild(otherGrid);
   }
-}
-
-function renderChannels(items) {
-  channelsList.innerHTML = '';
-  if (!items || items.length === 0) {
-    channelsBlock.style.display = 'none';
-    return;
-  }
-
-  items.forEach(item => channelsList.appendChild(createChannelCard(item)));
-  channelsBlock.style.display = 'block';
 }
 
 function openVideo(item) {
@@ -405,28 +462,42 @@ function showVpnWarning(source, callback) {
     vpnTitle.textContent = 'Выключите VPN';
     vpnText.textContent = 'Для поиска видео на Rutube, пожалуйста, выключите VPN. Rutube может блокировать запросы с иностранных IP-адресов.';
   }
-  
   vpnModal.classList.add('open');
-
-  const onCancel = () => {
-    vpnModal.classList.remove('open');
-    cleanup();
-  };
-  
-  const onContinue = () => {
-    vpnModal.classList.remove('open');
-    callback();
-    cleanup();
-  };
-
+  const onCancel = () => { vpnModal.classList.remove('open'); cleanup(); };
+  const onContinue = () => { vpnModal.classList.remove('open'); callback(); cleanup(); };
   function cleanup() {
     vpnCancel.removeEventListener('click', onCancel);
     vpnContinue.removeEventListener('click', onContinue);
   }
-
   vpnCancel.addEventListener('click', onCancel);
   vpnContinue.addEventListener('click', onContinue);
 }
+
+payClose.addEventListener('click', () => payModal.classList.remove('open'));
+payModal.addEventListener('click', (e) => { if (e.target === payModal) payModal.classList.remove('open'); });
+
+// Функция для создания платежа
+payBtn.addEventListener('click', async () => {
+  payBtn.disabled = true;
+  payBtn.textContent = 'Загрузка...';
+  try {
+    const res = await fetch(`${PROXY}/create-payment`, {
+      method: 'POST'
+    });
+    const data = await res.json();
+    if (data.ok && data.url) {
+      window.location.href = data.url; // Переходим на страницу оплаты ЮKassa
+    } else {
+      alert('Ошибка при создании платежа. Попробуйте позже.');
+      payBtn.disabled = false;
+      payBtn.textContent = 'Оформить подписку';
+    }
+  } catch (e) {
+    alert('Ошибка сети. Проверьте подключение.');
+    payBtn.disabled = false;
+    payBtn.textContent = 'Оформить подписку';
+  }
+});
 
 async function doSearch() {
   const q = topicEl.value.trim();
@@ -438,7 +509,6 @@ async function doSearch() {
   showMessage('Загружаем данные, подождите.');
 
   try {
-    // 1. Конспект
     let definition = getHardcodedSummary(q);
     if (!definition) {
       const wikiText = await getWikipediaSummary(q);
@@ -453,18 +523,17 @@ async function doSearch() {
       summaryContent.innerHTML = definition;
       summaryBlock.classList.add('open');
     } else {
-      summaryBlock.classList.remove('open');
+      summaryContent.innerHTML = `<div class="summary-title">Тема: ${q}</div><div class="summary-text">К сожалению, конспект не найден. Смотрите видеоуроки ниже.</div>`;
+      summaryBlock.classList.add('open');
     }
 
-    // 2. Видео
     const videoParams = new URLSearchParams({ q, grade, source, type: 'video' });
     const videoResp = await fetch(`${PROXY}/?${videoParams}`);
     const videoData = await videoResp.json();
     if (videoData.ok) renderVideos(videoData.items);
 
-    // 3. Каналы (только для YouTube)
     if (source === 'youtube') {
-      const chanParams = new URLSearchParams({ q, source, type: 'channel', max: '4' }); // Ищем 4 канала
+      const chanParams = new URLSearchParams({ q, source, type: 'channel', max: '6' });
       const chanResp = await fetch(`${PROXY}/?${chanParams}`);
       const chanData = await chanResp.json();
       if (chanData.ok) renderChannels(chanData.items);
@@ -489,14 +558,11 @@ goEl.addEventListener('click', () => {
     topicEl.focus();
     return;
   }
-  
   const source = getSource();
   showVpnWarning(source, doSearch);
 });
 
-topicEl.addEventListener('keydown', e => { 
-  if (e.key === 'Enter') goEl.click(); 
-});
+topicEl.addEventListener('keydown', e => { if (e.key === 'Enter') goEl.click(); });
 </script>
 </body>
 </html>
