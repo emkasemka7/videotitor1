@@ -12,11 +12,17 @@
   body { font-family: 'PT Sans', Arial, sans-serif; background-color: #fdfcf8; background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); background-size: 24px 24px; color: #222222; line-height: 32px; font-size: 16px; position: relative; min-height: 100vh; overflow-x: hidden; }
   @media (min-width: 768px) { body::before { content: ''; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background-color: #ff9a9a; z-index: 10; } }
   h1, .logo, .section-title, label, button, .vpn-box h3, .tariff-info h3 { font-family: 'Caveat', cursive; font-weight: 700; }
+  
+  /* Обновленная шапка */
   header { border-bottom: 2px solid #333; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
-  .header-inner { max-width: 900px; margin: 0 auto; padding: 16px 20px; display: flex; flex-direction: column; }
+  .header-inner { max-width: 900px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
   @media (min-width: 768px) { .header-inner { padding-left: 60px; } }
   .logo { font-size: 36px; color: #1a4d8f; transform: rotate(-1deg); display: inline-block; line-height: 1.2; }
   .header-note { font-size: 15px; color: #555555; font-style: italic; font-family: 'PT Sans', sans-serif; }
+  .header-nav { font-family: 'PT Sans', sans-serif; font-size: 16px; font-weight: bold; display: flex; gap: 15px; }
+  .header-nav a { color: #1a4d8f; text-decoration: none; }
+  .header-nav a:hover { text-decoration: underline; }
+
   main { max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; position: relative; z-index: 10; }
   @media (min-width: 768px) { main { padding-left: 60px; padding-right: 20px; } }
   .title-wrap { position: relative; margin-bottom: 10px; }
@@ -110,8 +116,9 @@
   .tariff-info p { font-size: 15px; color: #444; margin-bottom: 8px; }
   .tariff-info a { color: #1a4d8f; font-weight: bold; }
 
+  /* Обновленный футер */
   footer { text-align: center; padding: 24px 20px; color: #777; font-size: 15px; border-top: 2px solid #ccc; font-style: italic; font-family: 'PT Sans', sans-serif; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
-  footer a { color: #1a4d8f; text-decoration: none; font-weight: bold; }
+  footer a { color: #1a4d8f; text-decoration: none; font-weight: bold; margin: 0 5px; }
   footer a:hover { text-decoration: underline; }
 </style>
 </head>
@@ -119,8 +126,14 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo">Медиатитор</div>
-    <div class="header-note">Поиск видеоуроков и образовательных каналов</div>
+    <div>
+      <div class="logo">Медиатитор</div>
+      <div class="header-note">Поиск видеоуроков и образовательных каналов</div>
+    </div>
+    <nav class="header-nav">
+      <a href="articles.html">Статьи</a>
+      <a href="about.html">О проекте</a>
+    </nav>
   </div>
 </header>
 
@@ -192,11 +205,14 @@
 
 </main>
 
+<!-- ОБНОВЛЕННЫЙ ФУТЕР -->
 <footer>
   <p style="margin-bottom: 10px;">Медиатитор — поиск видеоуроков для школьников</p>
   <p style="font-size: 14px; font-style: normal;">
-    <a href="requisites.html">Реквизиты и контакты</a> | 
-    <a href="offer.html">Публичная оферта</a>
+    <a href="articles.html">Статьи</a> | 
+    <a href="about.html">О проекте</a> | 
+    <a href="requisites.html">Реквизиты</a> | 
+    <a href="offer.html">Оферта</a>
   </p>
 </footer>
 
