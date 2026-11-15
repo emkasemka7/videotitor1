@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Медиатитор — видеоуроки и конспекты</title>
+<title>Медиатитор — поиск видеоуроков</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -42,12 +42,6 @@
   button.find:disabled { background: #8fa9c9; cursor: wait; }
   .message { border: 2px dashed #777; border-radius: 8px; padding: 20px; text-align: center; font-size: 17px; color: #555; background: rgba(255,255,255,0.9); }
   
-  .summary-block { display: none; background: #fffde7; border: 2px dashed #e0c97f; border-radius: 8px; padding: 24px; margin-bottom: 30px; box-shadow: 4px 4px 0 rgba(0,0,0,0.05); transform: rotate(-0.5deg); position: relative; }
-  .summary-block.open { display: block; }
-  .summary-title { font-family: 'Caveat', cursive; font-size: 34px; color: #b71c1c; margin-bottom: 12px; border-bottom: 2px solid #b71c1c; display: inline-block; line-height: 1.2; }
-  .summary-text { font-size: 17px; line-height: 1.6; margin-bottom: 16px; color: #222; }
-  .summary-rule { background: rgba(255, 255, 255, 0.6); border-left: 4px solid #1a4d8f; padding: 10px 14px; margin-bottom: 12px; font-weight: 700; color: #1a4d8f; font-size: 16px; }
-
   .channel-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); margin-bottom: 30px; }
   .channel-card { border: 2px solid #555; border-radius: 4px; overflow: hidden; cursor: pointer; background: #fff; transition: transform 0.2s; transform: rotate(0.5deg); box-shadow: 3px 3px 0 rgba(0,0,0,0.1); text-align: center; padding: 16px 10px; text-decoration: none; color: #222; display: block; position: relative; }
   .channel-card:nth-child(even) { transform: rotate(-0.5deg); }
@@ -105,8 +99,10 @@
   .pay-box h3 { font-size: 36px; margin-bottom: 10px; color: #b71c1c; }
   .pay-box p { font-size: 16px; margin-bottom: 20px; }
   .pay-box .price { font-size: 28px; font-weight: 700; color: #1a4d8f; margin-bottom: 20px; display: block; }
-  .pay-btn { background: #f59e0b; color: #000; font-family: 'PT Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; }
+  .pay-btn { background: #f59e0b; color: #000; font-family: 'PT Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; margin-bottom: 10px; }
   .pay-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #b45309; }
+  .pay-btn.trial { background: #1a4d8f; color: #fff; border-color: #143c70; box-shadow: 3px 3px 0 #143c70; }
+  .pay-btn.trial:hover { box-shadow: 2px 2px 0 #143c70; }
   .pay-close { background: none; border: none; color: #777; margin-top: 15px; cursor: pointer; text-decoration: underline; font-size: 14px; }
 
   .tariff-info { margin-top: 40px; padding: 20px; background: #fff; border: 2px dashed #555; border-radius: 8px; text-align: center; }
@@ -124,7 +120,7 @@
 <header>
   <div class="header-inner">
     <div class="logo">Медиатитор</div>
-    <div class="header-note">Видеоуроки, каналы и конспекты</div>
+    <div class="header-note">Поиск видеоуроков и образовательных каналов</div>
   </div>
 </header>
 
@@ -174,10 +170,6 @@
     </div>
   </div>
 
-  <div id="summaryBlock" class="summary-block">
-    <div id="summaryContent"></div>
-  </div>
-
   <div id="channelsBlock" style="display:none;">
     <div class="section-title">Каналы по теме</div>
     <div id="channelsList" class="channel-list"></div>
@@ -186,12 +178,12 @@
   <div id="status" class="message">Введите тему урока и нажмите «Найти видеоуроки».</div>
   <div id="results"></div>
 
-  <!-- БЛОК УСЛОВИЙ ДЛЯ ЮKASSA -->
+  <!-- БЛОК УСЛОВИЙ -->
   <div class="tariff-info">
     <h3>Премиум-подписка «Медиатитор»</h3>
-    <p><b>Стоимость:</b> 199 ₽ в месяц.</p>
+    <p><b>Стоимость:</b> 49 ₽ в месяц (после 3 дней бесплатного пробного периода).</p>
     <p><b>Что входит:</b> Доступ к лучшим 3 видеоурокам по каждой теме и к списку лучших образовательных каналов.</p>
-    <p><b>Как получить:</b> Доступ активируется автоматически на этом устройстве сразу после успешной оплаты.</p>
+    <p><b>Как получить:</b> Доступ активируется автоматически на этом устройстве сразу после оплаты.</p>
     <p style="margin-top: 15px;">
       <a href="offer.html">Публичная оферта</a> | 
       <a href="requisites.html">Реквизиты и контакты</a>
@@ -201,7 +193,7 @@
 </main>
 
 <footer>
-  <p style="margin-bottom: 10px;">Медиатитор — видеоуроки, каналы и конспекты для школьников</p>
+  <p style="margin-bottom: 10px;">Медиатитор — поиск видеоуроков для школьников</p>
   <p style="font-size: 14px; font-style: normal;">
     <a href="requisites.html">Реквизиты и контакты</a> | 
     <a href="offer.html">Публичная оферта</a>
@@ -234,8 +226,9 @@
   <div class="pay-box">
     <h3>Премиум доступ</h3>
     <p>Откройте лучшие каналы и видеоуроки по подписке.</p>
-    <span class="price">199 ₽ / месяц</span>
-    <button class="pay-btn" id="payBtn">Оформить подписку</button>
+    <button class="pay-btn trial" id="trialBtn">Попробовать 3 дня бесплатно</button>
+    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">Далее 49 ₽ / месяц. Отмена в любой момент.</div>
+    <button class="pay-btn" id="payBtn">Оформить за 49 ₽ / месяц</button>
     <button class="pay-close" id="payClose">Закрыть</button>
   </div>
 </div>
@@ -243,25 +236,29 @@
 <script>
 const PROXY = 'https://still-band-05c9.emkasemka04.workers.dev';
 
-// ПРОВЕРКА ОПЛАТЫ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('success') === '1') {
-  localStorage.setItem('isSubscribed', 'true');
+  localStorage.setItem('subscribedUntil', Date.now() + (30 * 24 * 60 * 60 * 1000));
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
-let isSubscribed = localStorage.getItem('isSubscribed') === 'true';
+function checkSubscription() {
+  const subscribedUntil = localStorage.getItem('subscribedUntil');
+  if (subscribedUntil && Date.now() < parseInt(subscribedUntil)) return true;
+  return false;
+}
+
+let isSubscribed = checkSubscription();
 
 const $ = id => document.getElementById(id);
 const topicEl = $('topic'), gradeEl = $('grade'), goEl = $('go');
 const statusEl = $('status'), resultsEl = $('results');
-const summaryBlock = $('summaryBlock'), summaryContent = $('summaryContent');
 const channelsBlock = $('channelsBlock'), channelsList = $('channelsList');
 const windowEl = $('window'), frame = $('frame'), windowTitle = $('windowTitle');
 const openExternal = $('openExternal'), closeWindow = $('closeWindow');
 const vpnModal = $('vpnModal'), vpnTitle = $('vpnTitle'), vpnText = $('vpnText');
 const vpnCancel = $('vpnCancel'), vpnContinue = $('vpnContinue');
-const payModal = $('payModal'), payClose = $('payClose'), payBtn = $('payBtn');
+const payModal = $('payModal'), payClose = $('payClose'), payBtn = $('payBtn'), trialBtn = $('trialBtn');
 
 function getSource() {
   const checked = document.querySelector('input[name="source"]:checked');
@@ -281,44 +278,6 @@ function showMessage(text) {
   statusEl.style.display = 'block';
   resultsEl.innerHTML = '';
   channelsBlock.style.display = 'none';
-  summaryBlock.classList.remove('open');
-}
-
-function getHardcodedSummary(query) {
-  const q = query.toLowerCase();
-  if (q.includes('фсу') || q.includes('сокращённого умножения')) {
-    return `<div class="summary-title">Конспект: ФСУ</div>
-            <div class="summary-text">Формулы сокращённого умножения — часто встречающиеся случаи умножения многочленов.</div>
-            <div class="summary-rule">📌 Квадрат суммы: (a + b)² = a² + 2ab + b²</div>
-            <div class="summary-rule">📌 Разность квадратов: a² - b² = (a - b)(a + b)</div>`;
-  }
-  if (q.includes('дроб')) {
-    return `<div class="summary-title">Конспект: Обыкновенные дроби</div>
-            <div class="summary-text">Дробь — это число, состоящее из одной или нескольких равных частей единицы.</div>
-            <div class="summary-rule">📌 Число над чертой — <b>числитель</b>, под чертой — <b>знаменатель</b>.</div>`;
-  }
-  return null;
-}
-
-async function getWikipediaSummary(query) {
-  try {
-    const searchUrl = `https://ru.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`;
-    const searchRes = await fetch(searchUrl);
-    const searchData = await searchRes.json();
-    if (!searchData.query?.search?.length) return null;
-    const bestTitle = searchData.query.search[0].title;
-    const url = `https://ru.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&format=json&origin=*&titles=${encodeURIComponent(bestTitle)}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    const pages = data.query?.pages;
-    const pageId = pages ? Object.keys(pages)[0] : null;
-    if (pageId && pageId !== "-1" && pages[pageId].extract) {
-      let text = pages[pageId].extract;
-      if (text.length > 600) text = text.substring(0, 600) + '...';
-      return text;
-    }
-    return null;
-  } catch (e) { return null; }
 }
 
 function createVideoCard(item, isPremium) {
@@ -360,14 +319,12 @@ function renderChannels(items) {
   channelsList.innerHTML = '';
   if (!items || items.length === 0) { channelsBlock.style.display = 'none'; return; }
   
-  // Берем максимум 6 каналов
   const top6 = items.slice(0, 6);
   
   top6.forEach((item, index) => {
     const card = document.createElement('div');
     card.className = 'channel-card';
     
-    // Первые 3 (индекс 0, 1, 2) — платные. Остальные (3, 4, 5) — бесплатные.
     const isPremium = index < 3;
     
     if (isPremium && !isSubscribed) {
@@ -476,26 +433,31 @@ function showVpnWarning(source, callback) {
 payClose.addEventListener('click', () => payModal.classList.remove('open'));
 payModal.addEventListener('click', (e) => { if (e.target === payModal) payModal.classList.remove('open'); });
 
-// Функция для создания платежа
+trialBtn.addEventListener('click', () => {
+  localStorage.setItem('subscribedUntil', Date.now() + (3 * 24 * 60 * 60 * 1000));
+  isSubscribed = true;
+  payModal.classList.remove('open');
+  alert('Пробный период на 3 дня активирован! Наслаждайтесь премиум-доступом.');
+  doSearch();
+});
+
 payBtn.addEventListener('click', async () => {
   payBtn.disabled = true;
   payBtn.textContent = 'Загрузка...';
   try {
-    const res = await fetch(`${PROXY}/create-payment`, {
-      method: 'POST'
-    });
+    const res = await fetch(`${PROXY}/create-payment`, { method: 'POST' });
     const data = await res.json();
     if (data.ok && data.url) {
-      window.location.href = data.url; // Переходим на страницу оплаты ЮKassa
+      window.location.href = data.url;
     } else {
       alert('Ошибка при создании платежа. Попробуйте позже.');
       payBtn.disabled = false;
-      payBtn.textContent = 'Оформить подписку';
+      payBtn.textContent = 'Оформить за 49 ₽ / месяц';
     }
   } catch (e) {
     alert('Ошибка сети. Проверьте подключение.');
     payBtn.disabled = false;
-    payBtn.textContent = 'Оформить подписку';
+    payBtn.textContent = 'Оформить за 49 ₽ / месяц';
   }
 });
 
@@ -509,24 +471,6 @@ async function doSearch() {
   showMessage('Загружаем данные, подождите.');
 
   try {
-    let definition = getHardcodedSummary(q);
-    if (!definition) {
-      const wikiText = await getWikipediaSummary(q);
-      if (wikiText) {
-        definition = `
-          <div class="summary-title">Тема: ${q}</div>
-          <div class="summary-text">${wikiText}</div>
-        `;
-      }
-    }
-    if (definition) {
-      summaryContent.innerHTML = definition;
-      summaryBlock.classList.add('open');
-    } else {
-      summaryContent.innerHTML = `<div class="summary-title">Тема: ${q}</div><div class="summary-text">К сожалению, конспект не найден. Смотрите видеоуроки ниже.</div>`;
-      summaryBlock.classList.add('open');
-    }
-
     const videoParams = new URLSearchParams({ q, grade, source, type: 'video' });
     const videoResp = await fetch(`${PROXY}/?${videoParams}`);
     const videoData = await videoResp.json();
