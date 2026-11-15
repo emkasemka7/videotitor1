@@ -6,20 +6,29 @@
 <title>Медиатитор — поиск видеоуроков</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Shantell+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'PT Sans', Arial, sans-serif; background-color: #fdfcf8; background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); background-size: 24px 24px; color: #222222; line-height: 32px; font-size: 16px; position: relative; min-height: 100vh; overflow-x: hidden; }
+  body { 
+    font-family: 'Shantell Sans', 'Comic Sans MS', cursive, sans-serif; 
+    background-color: #fdfcf8; 
+    background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); 
+    background-size: 24px 24px; 
+    color: #222222; 
+    line-height: 1.8; 
+    font-size: 17px; 
+    position: relative; 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+  }
   @media (min-width: 768px) { body::before { content: ''; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background-color: #ff9a9a; z-index: 10; } }
   h1, .logo, .section-title, label, button, .vpn-box h3, .tariff-info h3 { font-family: 'Caveat', cursive; font-weight: 700; }
-  
-  /* Обновленная шапка */
   header { border-bottom: 2px solid #333; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
   .header-inner { max-width: 900px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
   @media (min-width: 768px) { .header-inner { padding-left: 60px; } }
   .logo { font-size: 36px; color: #1a4d8f; transform: rotate(-1deg); display: inline-block; line-height: 1.2; }
-  .header-note { font-size: 15px; color: #555555; font-style: italic; font-family: 'PT Sans', sans-serif; }
-  .header-nav { font-family: 'PT Sans', sans-serif; font-size: 16px; font-weight: bold; display: flex; gap: 15px; }
+  .header-note { font-size: 15px; color: #555555; font-style: italic; font-family: 'Shantell Sans', sans-serif; }
+  .header-nav { font-family: 'Shantell Sans', sans-serif; font-size: 16px; font-weight: bold; display: flex; gap: 15px; }
   .header-nav a { color: #1a4d8f; text-decoration: none; }
   .header-nav a:hover { text-decoration: underline; }
 
@@ -35,12 +44,12 @@
   .form-line:last-child { margin-bottom: 0; }
   label { display: block; font-size: 28px; color: #1a4d8f; margin-bottom: 0px; line-height: 1; }
   @media (max-width: 520px) { label { font-size: 24px; } }
-  input[type="text"], select { font-family: 'PT Sans', Arial, sans-serif; font-size: 17px; color: #222; background: #ffffff; border: 2px solid #555; border-radius: 8px; padding: 10px 14px; width: 100%; outline: none; margin-top: 5px; -webkit-appearance: none; }
+  input[type="text"], select { font-family: 'Shantell Sans', sans-serif; font-size: 17px; color: #222; background: #ffffff; border: 2px solid #555; border-radius: 8px; padding: 10px 14px; width: 100%; outline: none; margin-top: 5px; -webkit-appearance: none; }
   input[type="text"]:focus, select:focus { border-color: #1a4d8f; }
   .two-columns { display: flex; gap: 18px; flex-wrap: wrap; }
   .two-columns > div { flex: 1; min-width: 150px; }
   .source-options { display: flex; gap: 24px; padding-top: 8px; flex-wrap: wrap; }
-  .source-options label { font-family: 'PT Sans', Arial, sans-serif; font-size: 17px; font-weight: 400; color: #222; display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 0; }
+  .source-options label { font-family: 'Shantell Sans', sans-serif; font-size: 17px; font-weight: 400; color: #222; display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 0; }
   .source-options input[type="radio"] { width: 20px; height: 20px; cursor: pointer; accent-color: #1a4d8f; }
   button.find { font-size: 28px; color: #ffffff; background: #1a4d8f; border: 2px solid #143c70; border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; padding: 10px 20px; cursor: pointer; width: 100%; line-height: 1.2; transition: transform 0.1s; }
   button.find:hover { background: #143c70; }
@@ -60,7 +69,7 @@
   .locked-card .preview, .locked-card img { filter: blur(4px) grayscale(100%); opacity: 0.8; }
   .lock-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; z-index: 10; text-align: center; border-radius: 4px; padding: 10px; }
   .lock-overlay svg { width: 30px; height: 30px; fill: #fff; margin-bottom: 8px; }
-  .lock-overlay span { font-family: 'PT Sans', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.2; }
+  .lock-overlay span { font-family: 'Shantell Sans', sans-serif; font-size: 14px; font-weight: 700; line-height: 1.2; }
 
   .section-title { font-size: 36px; margin: 30px 0 16px; color: #1a4d8f; border-bottom: 2px solid #333; padding-bottom: 0px; display: inline-block; transform: rotate(-1deg); line-height: 1.2; background: rgba(253, 252, 248, 0.8); }
   @media (max-width: 520px) { .section-title { font-size: 28px; } }
@@ -84,16 +93,16 @@
   .window-title { font-size: 20px; font-weight: 700; flex: 1; min-width: 150px; font-family: 'Caveat', cursive; line-height: 1.2; }
   .window-link { font-size: 15px; color: #1a4d8f; text-decoration: none; font-weight: 700; }
   .window-link:hover { text-decoration: underline; }
-  .window-close { font-family: 'PT Sans', sans-serif; font-size: 16px; font-weight: 700; color: #222; background: #eee; border: 2px solid #444; border-radius: 4px; padding: 8px 16px; cursor: pointer; }
+  .window-close { font-family: 'Shantell Sans', sans-serif; font-size: 16px; font-weight: 700; color: #222; background: #eee; border: 2px solid #444; border-radius: 4px; padding: 8px 16px; cursor: pointer; }
   .window-close:hover { background: #ddd; }
 
   .vpn-modal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 200; }
   .vpn-modal.open { display: flex; }
   .vpn-box { background: #fff; border-radius: 8px; max-width: 420px; width: 100%; padding: 24px; border: 2px solid #333; transform: rotate(1deg); box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
   .vpn-box h3 { font-size: 32px; margin-bottom: 12px; color: #1a4d8f; line-height: 1.2; }
-  .vpn-box p { font-size: 16px; color: #333; margin-bottom: 24px; font-family: 'PT Sans', sans-serif; line-height: 1.5; }
+  .vpn-box p { font-size: 16px; color: #333; margin-bottom: 24px; font-family: 'Shantell Sans', sans-serif; line-height: 1.5; }
   .vpn-buttons { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
-  .vpn-buttons button { font-family: 'PT Sans', sans-serif; font-size: 16px; font-weight: 700; padding: 10px 20px; border-radius: 4px; cursor: pointer; border: 2px solid #333; }
+  .vpn-buttons button { font-family: 'Shantell Sans', sans-serif; font-size: 16px; font-weight: 700; padding: 10px 20px; border-radius: 4px; cursor: pointer; border: 2px solid #333; }
   .vpn-buttons .cancel { background: #eee; color: #333; }
   .vpn-buttons .cancel:hover { background: #ddd; }
   .vpn-buttons .continue { background: #1a4d8f; color: #fff; border-color: #143c70; }
@@ -105,7 +114,7 @@
   .pay-box h3 { font-size: 36px; margin-bottom: 10px; color: #b71c1c; }
   .pay-box p { font-size: 16px; margin-bottom: 20px; }
   .pay-box .price { font-size: 28px; font-weight: 700; color: #1a4d8f; margin-bottom: 20px; display: block; }
-  .pay-btn { background: #f59e0b; color: #000; font-family: 'PT Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; margin-bottom: 10px; }
+  .pay-btn { background: #f59e0b; color: #000; font-family: 'Shantell Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; margin-bottom: 10px; }
   .pay-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #b45309; }
   .pay-btn.trial { background: #1a4d8f; color: #fff; border-color: #143c70; box-shadow: 3px 3px 0 #143c70; }
   .pay-btn.trial:hover { box-shadow: 2px 2px 0 #143c70; }
@@ -116,8 +125,7 @@
   .tariff-info p { font-size: 15px; color: #444; margin-bottom: 8px; }
   .tariff-info a { color: #1a4d8f; font-weight: bold; }
 
-  /* Обновленный футер */
-  footer { text-align: center; padding: 24px 20px; color: #777; font-size: 15px; border-top: 2px solid #ccc; font-style: italic; font-family: 'PT Sans', sans-serif; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
+  footer { text-align: center; padding: 24px 20px; color: #777; font-size: 15px; border-top: 2px solid #ccc; font-style: italic; font-family: 'Shantell Sans', sans-serif; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
   footer a { color: #1a4d8f; text-decoration: none; font-weight: bold; margin: 0 5px; }
   footer a:hover { text-decoration: underline; }
 </style>
@@ -205,7 +213,6 @@
 
 </main>
 
-<!-- ОБНОВЛЕННЫЙ ФУТЕР -->
 <footer>
   <p style="margin-bottom: 10px;">Медиатитор — поиск видеоуроков для школьников</p>
   <p style="font-size: 14px; font-style: normal;">
@@ -384,7 +391,7 @@ function renderVideos(items) {
   
   const topTitle = document.createElement('div');
   topTitle.className = 'section-title';
-  topTitle.innerHTML = 'Лучшие видеоуроки <span style="font-size: 18px; color: #b71c1c; font-family: \'PT Sans\'; vertical-align: middle; margin-left: 10px;">🔒 По подписке</span>';
+  topTitle.innerHTML = 'Лучшие видеоуроки <span style="font-size: 18px; color: #b71c1c; font-family: \'Shantell Sans\'; vertical-align: middle; margin-left: 10px;">🔒 По подписке</span>';
   resultsEl.appendChild(topTitle);
   
   const topGrid = document.createElement('div');
