@@ -74,7 +74,7 @@
   .video-card .name { font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; color: #222; }
   .video-card .author { font-size: 14px; color: #666; font-style: italic; }
 
-  /* --- КАРУСЕЛЬ --- */
+  /* --- БЛОК С МАТЕРИАЛАМИ (КАРУСЕЛЬ) --- */
   .materials-block {
     margin-top: 40px;
     padding: 20px;
@@ -125,13 +125,12 @@
     box-sizing: border-box;
   }
   
-  /* Стили для картинок из папки images */
   .material-img {
     width: 100%;
     height: 180px;
     border-radius: 6px;
     margin-bottom: 15px;
-    object-fit: cover; /* Картинка заполняет блок, не искажаясь */
+    object-fit: cover;
     background-color: #d0d9e8;
     border: 1px solid #ccc;
   }
@@ -284,7 +283,7 @@
   <div id="status" class="message">Введите тему урока и нажмите «Найти видеоуроки».</div>
   <div id="results"></div>
 
-  <!-- БЛОК С МАТЕРИАЛАМИ -->
+  <!-- БЛОК С МАТЕРИАЛАМИ (КАРУСЕЛЬ) -->
   <div class="materials-block">
     <div class="materials-title">Полезные материалы</div>
     
@@ -296,50 +295,44 @@
       <div class="carousel-viewport">
         <div class="carousel-track" id="carouselTrack">
           
-          <!-- Карточка 1 -->
           <div class="material-card">
-            <!-- Тут путь к вашей картинке -->
             <img class="material-img" src="images/1-5.jpg" alt="1-5 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 1-5.jpg</text></svg>'">
             <h4>1-5 класс</h4>
             <p>Задачники, лучшие объяснения и конспекты по всем предметам начальной школы.</p>
             <span class="price">399 ₽</span>
-            <button class="buy-btn" onclick="openMaterialPayment('1-5 класс', '399.00')">Купить</button>
+            <button class="buy-btn" onclick="buyItem('1-5 класс', '399.00', '1-5')">Купить</button>
           </div>
           
-          <!-- Карточка 2 -->
           <div class="material-card">
             <img class="material-img" src="images/5-8.jpg" alt="5-8 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 5-8.jpg</text></svg>'">
             <h4>5-8 класс</h4>
             <p>Материалы для средней школы: более сложные темы, задачи и видеоуроки.</p>
             <span class="price">399 ₽</span>
-            <button class="buy-btn" onclick="openMaterialPayment('5-8 класс', '399.00')">Купить</button>
+            <button class="buy-btn" onclick="buyItem('5-8 класс', '399.00', '5-8')">Купить</button>
           </div>
 
-          <!-- Карточка 3 -->
           <div class="material-card">
             <img class="material-img" src="images/9-11.jpg" alt="9-11 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 9-11.jpg</text></svg>'">
             <h4>9-11 класс</h4>
             <p>Готовые конспекты и разборы для старшеклассников. Подготовка к экзаменам.</p>
             <span class="price">399 ₽</span>
-            <button class="buy-btn" onclick="openMaterialPayment('9-11 класс', '399.00')">Купить</button>
+            <button class="buy-btn" onclick="buyItem('9-11 класс', '399.00', '9-11')">Купить</button>
           </div>
 
-          <!-- Карточка 4 -->
           <div class="material-card">
             <img class="material-img" src="images/oge.jpg" alt="ОГЭ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка oge.jpg</text></svg>'">
             <h4>Подготовка к ОГЭ</h4>
             <p>Полный сборник задач и объяснений для успешной сдачи ОГЭ по всем предметам.</p>
             <span class="price">399 ₽</span>
-            <button class="buy-btn" onclick="openMaterialPayment('Подготовка к ОГЭ', '399.00')">Купить</button>
+            <button class="buy-btn" onclick="buyItem('Подготовка к ОГЭ', '399.00', 'oge')">Купить</button>
           </div>
 
-          <!-- Карточка 5 -->
           <div class="material-card">
             <img class="material-img" src="images/ege.jpg" alt="ЕГЭ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка ege.jpg</text></svg>'">
             <h4>Подготовка к ЕГЭ</h4>
             <p>Лучшие материалы для подготовки к ЕГЭ: теория, практика и разбор сложных заданий.</p>
             <span class="price">399 ₽</span>
-            <button class="buy-btn" onclick="openMaterialPayment('Подготовка к ЕГЭ', '399.00')">Купить</button>
+            <button class="buy-btn" onclick="buyItem('Подготовка к ЕГЭ', '399.00', 'ege')">Купить</button>
           </div>
 
         </div>
@@ -405,4 +398,324 @@
     <span class="price" id="payPrice">399 ₽</span>
     
     <button class="pay-btn" id="payBtn">Оплатить</button>
-    <button class="pay-close" id="payClose">
+    <button class="pay-close" id="payClose">Закрыть</button>
+  </div>
+</div>
+
+<script>
+const PROXY = 'https://still-band-05c9.emkasemka04.workers.dev';
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('success') === '1') {
+  localStorage.setItem('subscribedUntil', Date.now() + (30 * 24 * 60 * 60 * 1000));
+  window.history.replaceState({}, document.title, window.location.pathname);
+}
+
+function checkSubscription() {
+  const subscribedUntil = localStorage.getItem('subscribedUntil');
+  if (subscribedUntil && Date.now() < parseInt(subscribedUntil)) return true;
+  return false;
+}
+
+let isSubscribed = checkSubscription();
+
+const $ = id => document.getElementById(id);
+const topicEl = $('topic'), gradeEl = $('grade'), goEl = $('go');
+const statusEl = $('status'), resultsEl = $('results');
+const channelsBlock = $('channelsBlock'), channelsList = $('channelsList');
+const windowEl = $('window'), frame = $('frame'), windowTitle = $('windowTitle');
+const openExternal = $('openExternal'), closeWindow = $('closeWindow');
+const vpnModal = $('vpnModal'), vpnTitle = $('vpnTitle'), vpnText = $('vpnText');
+const vpnCancel = $('vpnCancel'), vpnContinue = $('vpnContinue');
+const payModal = $('payModal'), payClose = $('payClose'), payBtn = $('payBtn');
+const payDescription = $('payDescription'), payPrice = $('payPrice');
+
+function getSource() {
+  const checked = document.querySelector('input[name="source"]:checked');
+  return checked ? checked.value : 'youtube';
+}
+
+function placeholder(text) {
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180">
+      <rect width="320" height="180" fill="#e8e8e8"/>
+      <text x="160" y="94" font-family="Caveat, cursive" font-size="24" fill="#555"
+        text-anchor="middle">${text}</text></svg>`);
+}
+
+function showMessage(text) {
+  statusEl.textContent = text;
+  statusEl.style.display = 'block';
+  resultsEl.innerHTML = '';
+  channelsBlock.style.display = 'none';
+}
+
+function createVideoCard(item, isPremium) {
+  const card = document.createElement('div');
+  card.className = 'video-card';
+  
+  if (isPremium && !isSubscribed) {
+    card.classList.add('locked-card');
+    card.innerHTML = `
+      <div class="lock-overlay">
+        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        <span>По подписке</span>
+      </div>
+      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
+      <div class="info">
+        <div class="name">${item.title}</div>
+        <div class="author">${item.channel || ''}</div>
+      </div>
+    `;
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      buyItem('Премиум-подписка', '49.00', 'premium');
+    });
+  } else {
+    card.innerHTML = `
+      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
+      <div class="info">
+        <div class="name">${item.title}</div>
+        <div class="author">${item.channel || ''}</div>
+      </div>
+    `;
+    card.addEventListener('click', () => openVideo(item));
+  }
+  
+  return card;
+}
+
+function renderChannels(items) {
+  channelsList.innerHTML = '';
+  if (!items || items.length === 0) { channelsBlock.style.display = 'none'; return; }
+  
+  const top6 = items.slice(0, 6);
+  
+  top6.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'channel-card';
+    
+    const isPremium = index < 3;
+    
+    if (isPremium && !isSubscribed) {
+      card.classList.add('locked-card');
+      card.innerHTML = `
+        <div class="lock-overlay">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          <span>По подписке</span>
+        </div>
+        <img src="${item.thumb || placeholder('Канал')}" alt="">
+        <div class="name">${item.title}</div>
+        <div class="subs">Перейти на YouTube</div>
+      `;
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+        buyItem('Премиум-подписка', '49.00', 'premium');
+      });
+    } else {
+      card.innerHTML = `
+        <img src="${item.thumb || placeholder('Канал')}" alt="">
+        <div class="name">${item.title}</div>
+        <div class="subs">Перейти на YouTube</div>
+      `;
+      card.addEventListener('click', () => {
+        window.open(item.embed, '_blank');
+      });
+    }
+    
+    channelsList.appendChild(card);
+  });
+  
+  channelsBlock.style.display = 'block';
+}
+
+function renderVideos(items) {
+  resultsEl.innerHTML = '';
+  if (!items || items.length === 0) return;
+  
+  const topItems = items.slice(0, 3);
+  const otherItems = items.slice(3);
+  
+  const topTitle = document.createElement('div');
+  topTitle.className = 'section-title';
+  topTitle.innerHTML = 'Лучшие видеоуроки <span style="font-size: 18px; color: #b71c1c; font-family: \'Shantell Sans\'; vertical-align: middle; margin-left: 10px;">🔒 По подписке</span>';
+  resultsEl.appendChild(topTitle);
+  
+  const topGrid = document.createElement('div');
+  topGrid.className = 'video-list';
+  topItems.forEach(item => topGrid.appendChild(createVideoCard(item, true)));
+  resultsEl.appendChild(topGrid);
+
+  if (otherItems.length > 0) {
+    const otherTitle = document.createElement('div');
+    otherTitle.className = 'section-title';
+    otherTitle.textContent = 'Другие видеоуроки (Бесплатно)';
+    resultsEl.appendChild(otherTitle);
+    
+    const otherGrid = document.createElement('div');
+    otherGrid.className = 'video-list';
+    otherItems.forEach(item => otherGrid.appendChild(createVideoCard(item, false)));
+    resultsEl.appendChild(otherGrid);
+  }
+}
+
+function openVideo(item) {
+  if (item.embed) {
+    frame.src = item.embed;
+    openExternal.href = item.embed;
+    openExternal.style.display = 'inline';
+  } else {
+    frame.src = '';
+    openExternal.style.display = 'none';
+  }
+  windowTitle.textContent = item.title;
+  windowEl.classList.add('open');
+}
+
+function closeVideo() {
+  windowEl.classList.remove('open');
+  frame.src = '';
+}
+
+closeWindow.addEventListener('click', closeVideo);
+windowEl.addEventListener('click', e => { if (e.target === windowEl) closeVideo(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
+
+function showVpnWarning(source, callback) {
+  if (source === 'youtube') {
+    vpnTitle.textContent = 'Включите VPN';
+    vpnText.textContent = 'Для поиска видео на YouTube, пожалуйста, включите VPN. В противном случае поиск может не работать.';
+  } else {
+    vpnTitle.textContent = 'Выключите VPN';
+    vpnText.textContent = 'Для поиска видео на Rutube, пожалуйста, выключите VPN. Rutube может блокировать запросы с иностранных IP-адресов.';
+  }
+  vpnModal.classList.add('open');
+  const onCancel = () => { vpnModal.classList.remove('open'); cleanup(); };
+  const onContinue = () => { vpnModal.classList.remove('open'); callback(); cleanup(); };
+  function cleanup() {
+    vpnCancel.removeEventListener('click', onCancel);
+    vpnContinue.removeEventListener('click', onContinue);
+  }
+  vpnCancel.addEventListener('click', onCancel);
+  vpnContinue.addEventListener('click', onContinue);
+}
+
+// ФУНКЦИЯ ПОКУПКИ (ТЕСТОВЫЙ РЕЖИМ)
+function buyItem(title, price, itemId) {
+  payDescription.textContent = title;
+  payPrice.textContent = price + ' ₽';
+  
+  payBtn.onclick = () => {
+    // СОХРАНЯЕМ ВЫБРАННЫЙ ТОВАР
+    localStorage.setItem('purchasedItem', itemId);
+    
+    // ТЕСТОВЫЙ РЕЖИМ: Просто перекидываем на страницу скачивания
+    window.location.href = 'materials.html';
+    
+    // КОГДА РОБОКАССА ОДОБРИТ, РАСКОММЕНТИРУЙТЕ НИЖЕ, А ВЕРХНЮЮ СТРОКУ УДАЛИТЕ:
+    /*
+    fetch(`${PROXY}/create-payment`, { method: 'POST' })
+      .then(res => res.json())
+      .then(data => {
+        if (data.ok && data.url) window.location.href = data.url;
+        else alert('Ошибка оплаты');
+      });
+    */
+  };
+  
+  payModal.classList.add('open');
+}
+
+payClose.addEventListener('click', () => payModal.classList.remove('open'));
+payModal.addEventListener('click', (e) => { if (e.target === payModal) payModal.classList.remove('open'); });
+
+// ЛОГИКА КАРУСЕЛИ (ПЕРЕКЛЮЧЕНИЕ)
+const track = document.getElementById('carouselTrack');
+const cards = document.querySelectorAll('.material-card');
+const scrollLeftBtn = document.getElementById('scrollLeft');
+const scrollRightBtn = document.getElementById('scrollRight');
+
+let currentIndex = 0;
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+scrollLeftBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
+  updateCarousel();
+});
+
+scrollRightBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+  updateCarousel();
+});
+
+// Для свайпа на телефоне
+let touchStartX = 0;
+let touchEndX = 0;
+
+track.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+track.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  if (touchStartX - touchEndX > 50) {
+    currentIndex = (currentIndex < cards.length - 1) ? currentIndex + 1 : 0;
+    updateCarousel();
+  } else if (touchEndX - touchStartX > 50) {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : cards.length - 1;
+    updateCarousel();
+  }
+});
+
+async function doSearch() {
+  const q = topicEl.value.trim();
+  const grade = gradeEl.value;
+  const source = getSource();
+
+  goEl.disabled = true;
+  goEl.textContent = 'Идёт поиск...';
+  showMessage('Загружаем данные, подождите.');
+
+  try {
+    const videoParams = new URLSearchParams({ q, grade, source, type: 'video' });
+    const videoResp = await fetch(`${PROXY}/?${videoParams}`);
+    const videoData = await videoResp.json();
+    if (videoData.ok) renderVideos(videoData.items);
+
+    if (source === 'youtube') {
+      const chanParams = new URLSearchParams({ q, source, type: 'channel', max: '6' });
+      const chanResp = await fetch(`${PROXY}/?${chanParams}`);
+      const chanData = await chanResp.json();
+      if (chanData.ok) renderChannels(chanData.items);
+    } else {
+      channelsBlock.style.display = 'none';
+    }
+
+    statusEl.style.display = 'none';
+
+  } catch (e) {
+    showMessage('Не удалось загрузить данные. Причина: ' + e.message);
+  } finally {
+    goEl.disabled = false;
+    goEl.textContent = 'Найти видеоуроки';
+  }
+}
+
+goEl.addEventListener('click', () => {
+  const q = topicEl.value.trim();
+  if (!q) {
+    showMessage('Введите тему урока. Например: «математика» или «дроби».');
+    topicEl.focus();
+    return;
+  }
+  const source = getSource();
+  showVpnWarning(source, doSearch);
+});
+
+topicEl.addEventListener('keydown', e => { if (e.key === 'Enter') goEl.click(); });
+</script>
+</body>
+</html>
