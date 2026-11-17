@@ -9,20 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Shantell+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { 
-    font-family: 'Shantell Sans', 'Comic Sans MS', cursive, sans-serif; 
-    background-color: #fdfcf8; 
-    background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); 
-    background-size: 24px 24px; 
-    color: #222222; 
-    line-height: 1.8; 
-    font-size: 17px; 
-    position: relative; 
-    min-height: 100vh; 
-    overflow-x: hidden; 
-  }
+  body { font-family: 'Shantell Sans', 'Comic Sans MS', cursive, sans-serif; background-color: #fdfcf8; background-image: linear-gradient(to right, #d0d9e8 1px, transparent 1px), linear-gradient(to bottom, #d0d9e8 1px, transparent 1px); background-size: 24px 24px; color: #222222; line-height: 1.8; font-size: 17px; position: relative; min-height: 100vh; overflow-x: hidden; }
   @media (min-width: 768px) { body::before { content: ''; position: fixed; top: 0; bottom: 0; left: 40px; width: 2px; background-color: #ff9a9a; z-index: 10; } }
-  h1, .logo, .section-title, label, button, .vpn-box h3, .tariff-info h3 { font-family: 'Caveat', cursive; font-weight: 700; }
+  h1, .logo, .section-title, label, button, .vpn-box h3, footer h3, .materials-title { font-family: 'Caveat', cursive; font-weight: 700; }
+  
   header { border-bottom: 2px solid #333; background: rgba(253, 252, 248, 0.95); position: relative; z-index: 20; }
   .header-inner { max-width: 900px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
   @media (min-width: 768px) { .header-inner { padding-left: 60px; } }
@@ -84,6 +74,103 @@
   .video-card .name { font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; color: #222; }
   .video-card .author { font-size: 14px; color: #666; font-style: italic; }
 
+  /* --- КАРУСЕЛЬ --- */
+  .materials-block {
+    margin-top: 40px;
+    padding: 20px;
+    background: #fff;
+    border: 2px dashed #1a4d8f;
+    border-radius: 8px;
+    position: relative;
+  }
+  .materials-title {
+    font-size: 32px;
+    color: #1a4d8f;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    width: 100%;
+  }
+
+  .material-card {
+    flex: 0 0 100%;
+    background: #f0f4f8;
+    border: 2px solid #555;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  
+  /* Стили для картинок из папки images */
+  .material-img {
+    width: 100%;
+    height: 180px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    object-fit: cover; /* Картинка заполняет блок, не искажаясь */
+    background-color: #d0d9e8;
+    border: 1px solid #ccc;
+  }
+  
+  .material-card h4 { font-size: 20px; color: #1a4d8f; margin-bottom: 10px; font-weight: 700; }
+  .material-card p { font-size: 15px; color: #555; margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
+  .material-card .price { font-size: 24px; font-weight: 700; color: #b71c1c; margin-bottom: 15px; display: block; }
+  
+  .buy-btn { background: #f59e0b; color: #000; font-family: 'Shantell Sans', sans-serif; font-weight: 700; font-size: 16px; padding: 12px 20px; border-radius: 5px; border: 2px solid #b45309; box-shadow: 2px 2px 0 #b45309; cursor: pointer; width: 100%; transition: transform 0.1s; }
+  .buy-btn:hover { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #b45309; }
+
+  .arrow-btn {
+    background: #1a4d8f;
+    color: #fff;
+    border: 2px solid #143c70;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    flex-shrink: 0;
+    z-index: 5;
+  }
+  .arrow-btn:hover { background: #143c70; }
+  .arrow-btn:active { transform: scale(0.95); }
+  .arrow-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* МОДАЛЬНЫЕ ОКНА */
   .window { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); display: none; align-items: center; justify-content: center; padding: 10px; z-index: 100; }
   .window.open { display: flex; }
   .window-box { width: 100%; max-width: 860px; }
@@ -116,8 +203,6 @@
   .pay-box .price { font-size: 28px; font-weight: 700; color: #1a4d8f; margin-bottom: 20px; display: block; }
   .pay-btn { background: #f59e0b; color: #000; font-family: 'Shantell Sans', sans-serif; font-weight: 700; font-size: 18px; padding: 12px 30px; border-radius: 8px; text-decoration: none; display: block; border: 2px solid #b45309; box-shadow: 3px 3px 0 #b45309; transition: transform 0.1s; cursor: pointer; width: 100%; border: none; margin-bottom: 10px; }
   .pay-btn:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 #b45309; }
-  .pay-btn.trial { background: #1a4d8f; color: #fff; border-color: #143c70; box-shadow: 3px 3px 0 #143c70; }
-  .pay-btn.trial:hover { box-shadow: 2px 2px 0 #143c70; }
   .pay-close { background: none; border: none; color: #777; margin-top: 15px; cursor: pointer; text-decoration: underline; font-size: 14px; }
 
   .tariff-info { margin-top: 40px; padding: 20px; background: #fff; border: 2px dashed #555; border-radius: 8px; text-align: center; }
@@ -199,11 +284,78 @@
   <div id="status" class="message">Введите тему урока и нажмите «Найти видеоуроки».</div>
   <div id="results"></div>
 
+  <!-- БЛОК С МАТЕРИАЛАМИ -->
+  <div class="materials-block">
+    <div class="materials-title">Полезные материалы</div>
+    
+    <div class="carousel-wrapper">
+      <button class="arrow-btn" id="scrollLeft">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          
+          <!-- Карточка 1 -->
+          <div class="material-card">
+            <!-- Тут путь к вашей картинке -->
+            <img class="material-img" src="images/1-5.jpg" alt="1-5 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 1-5.jpg</text></svg>'">
+            <h4>1-5 класс</h4>
+            <p>Задачники, лучшие объяснения и конспекты по всем предметам начальной школы.</p>
+            <span class="price">399 ₽</span>
+            <button class="buy-btn" onclick="openMaterialPayment('1-5 класс', '399.00')">Купить</button>
+          </div>
+          
+          <!-- Карточка 2 -->
+          <div class="material-card">
+            <img class="material-img" src="images/5-8.jpg" alt="5-8 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 5-8.jpg</text></svg>'">
+            <h4>5-8 класс</h4>
+            <p>Материалы для средней школы: более сложные темы, задачи и видеоуроки.</p>
+            <span class="price">399 ₽</span>
+            <button class="buy-btn" onclick="openMaterialPayment('5-8 класс', '399.00')">Купить</button>
+          </div>
+
+          <!-- Карточка 3 -->
+          <div class="material-card">
+            <img class="material-img" src="images/9-11.jpg" alt="9-11 класс" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка 9-11.jpg</text></svg>'">
+            <h4>9-11 класс</h4>
+            <p>Готовые конспекты и разборы для старшеклассников. Подготовка к экзаменам.</p>
+            <span class="price">399 ₽</span>
+            <button class="buy-btn" onclick="openMaterialPayment('9-11 класс', '399.00')">Купить</button>
+          </div>
+
+          <!-- Карточка 4 -->
+          <div class="material-card">
+            <img class="material-img" src="images/oge.jpg" alt="ОГЭ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка oge.jpg</text></svg>'">
+            <h4>Подготовка к ОГЭ</h4>
+            <p>Полный сборник задач и объяснений для успешной сдачи ОГЭ по всем предметам.</p>
+            <span class="price">399 ₽</span>
+            <button class="buy-btn" onclick="openMaterialPayment('Подготовка к ОГЭ', '399.00')">Купить</button>
+          </div>
+
+          <!-- Карточка 5 -->
+          <div class="material-card">
+            <img class="material-img" src="images/ege.jpg" alt="ЕГЭ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'180\'><rect width=\'300\' height=\'180\' fill=\'%23d0d9e8\'/><text x=\'150\' y=\'90\' font-family=\'sans-serif\' font-size=\'16\' fill=\'%23555\' text-anchor=\'middle\'>Картинка ege.jpg</text></svg>'">
+            <h4>Подготовка к ЕГЭ</h4>
+            <p>Лучшие материалы для подготовки к ЕГЭ: теория, практика и разбор сложных заданий.</p>
+            <span class="price">399 ₽</span>
+            <button class="buy-btn" onclick="openMaterialPayment('Подготовка к ЕГЭ', '399.00')">Купить</button>
+          </div>
+
+        </div>
+      </div>
+      
+      <button class="arrow-btn" id="scrollRight">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
   <!-- БЛОК УСЛОВИЙ -->
   <div class="tariff-info">
-    <h3>Премиум-подписка «Медиатитор»</h3>
-    <p><b>Стоимость:</b> 49 ₽ в месяц (после 3 дней бесплатного пробного периода).</p>
-    <p><b>Что входит:</b> Доступ к лучшим 3 видеоурокам по каждой теме и к списку лучших образовательных каналов.</p>
+    <h3>Покупка материалов «Медиатитор»</h3>
+    <p><b>Стоимость:</b> 399 ₽ за один сборник.</p>
+    <p><b>Что входит:</b> Доступ к полному набору задач, конспектов и видеоуроков по выбранному классу или экзамену.</p>
     <p><b>Как получить:</b> Доступ активируется автоматически на этом устройстве сразу после оплаты.</p>
     <p style="margin-top: 15px;">
       <a href="offer.html">Публичная оферта</a> | 
@@ -223,6 +375,7 @@
   </p>
 </footer>
 
+<!-- МОДАЛЬНЫЕ ОКНА -->
 <div class="window" id="window">
   <div class="window-box">
     <div class="window-video"><iframe id="frame" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe></div>
@@ -247,289 +400,9 @@
 
 <div class="pay-modal" id="payModal">
   <div class="pay-box">
-    <h3>Премиум доступ</h3>
-    <p>Откройте лучшие каналы и видеоуроки по подписке.</p>
-    <button class="pay-btn trial" id="trialBtn">Попробовать 3 дня бесплатно</button>
-    <div style="font-size: 13px; color: #666; margin-bottom: 15px;">Далее 49 ₽ / месяц. Отмена в любой момент.</div>
-    <button class="pay-btn" id="payBtn">Оформить за 49 ₽ / месяц</button>
-    <button class="pay-close" id="payClose">Закрыть</button>
-  </div>
-</div>
-
-<script>
-const PROXY = 'https://still-band-05c9.emkasemka04.workers.dev';
-
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('success') === '1') {
-  localStorage.setItem('subscribedUntil', Date.now() + (30 * 24 * 60 * 60 * 1000));
-  window.history.replaceState({}, document.title, window.location.pathname);
-}
-
-function checkSubscription() {
-  const subscribedUntil = localStorage.getItem('subscribedUntil');
-  if (subscribedUntil && Date.now() < parseInt(subscribedUntil)) return true;
-  return false;
-}
-
-let isSubscribed = checkSubscription();
-
-const $ = id => document.getElementById(id);
-const topicEl = $('topic'), gradeEl = $('grade'), goEl = $('go');
-const statusEl = $('status'), resultsEl = $('results');
-const channelsBlock = $('channelsBlock'), channelsList = $('channelsList');
-const windowEl = $('window'), frame = $('frame'), windowTitle = $('windowTitle');
-const openExternal = $('openExternal'), closeWindow = $('closeWindow');
-const vpnModal = $('vpnModal'), vpnTitle = $('vpnTitle'), vpnText = $('vpnText');
-const vpnCancel = $('vpnCancel'), vpnContinue = $('vpnContinue');
-const payModal = $('payModal'), payClose = $('payClose'), payBtn = $('payBtn'), trialBtn = $('trialBtn');
-
-function getSource() {
-  const checked = document.querySelector('input[name="source"]:checked');
-  return checked ? checked.value : 'youtube';
-}
-
-function placeholder(text) {
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180">
-      <rect width="320" height="180" fill="#e8e8e8"/>
-      <text x="160" y="94" font-family="Caveat, cursive" font-size="24" fill="#555"
-        text-anchor="middle">${text}</text></svg>`);
-}
-
-function showMessage(text) {
-  statusEl.textContent = text;
-  statusEl.style.display = 'block';
-  resultsEl.innerHTML = '';
-  channelsBlock.style.display = 'none';
-}
-
-function createVideoCard(item, isPremium) {
-  const card = document.createElement('div');
-  card.className = 'video-card';
-  
-  if (isPremium && !isSubscribed) {
-    card.classList.add('locked-card');
-    card.innerHTML = `
-      <div class="lock-overlay">
-        <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-        <span>По подписке</span>
-      </div>
-      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
-      <div class="info">
-        <div class="name">${item.title}</div>
-        <div class="author">${item.channel || ''}</div>
-      </div>
-    `;
-    card.addEventListener('click', (e) => {
-      e.preventDefault();
-      payModal.classList.add('open');
-    });
-  } else {
-    card.innerHTML = `
-      <img class="preview" src="${item.thumb || placeholder('Видеоурок')}" alt="">
-      <div class="info">
-        <div class="name">${item.title}</div>
-        <div class="author">${item.channel || ''}</div>
-      </div>
-    `;
-    card.addEventListener('click', () => openVideo(item));
-  }
-  
-  return card;
-}
-
-function renderChannels(items) {
-  channelsList.innerHTML = '';
-  if (!items || items.length === 0) { channelsBlock.style.display = 'none'; return; }
-  
-  const top6 = items.slice(0, 6);
-  
-  top6.forEach((item, index) => {
-    const card = document.createElement('div');
-    card.className = 'channel-card';
+    <h3>Оплата</h3>
+    <p id="payDescription">Откройте лучшие каналы и видеоуроки по подписке.</p>
+    <span class="price" id="payPrice">399 ₽</span>
     
-    const isPremium = index < 3;
-    
-    if (isPremium && !isSubscribed) {
-      card.classList.add('locked-card');
-      card.innerHTML = `
-        <div class="lock-overlay">
-          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-          <span>По подписке</span>
-        </div>
-        <img src="${item.thumb || placeholder('Канал')}" alt="">
-        <div class="name">${item.title}</div>
-        <div class="subs">Перейти на YouTube</div>
-      `;
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-        payModal.classList.add('open');
-      });
-    } else {
-      card.innerHTML = `
-        <img src="${item.thumb || placeholder('Канал')}" alt="">
-        <div class="name">${item.title}</div>
-        <div class="subs">Перейти на YouTube</div>
-      `;
-      card.addEventListener('click', () => {
-        window.open(item.embed, '_blank');
-      });
-    }
-    
-    channelsList.appendChild(card);
-  });
-  
-  channelsBlock.style.display = 'block';
-}
-
-function renderVideos(items) {
-  resultsEl.innerHTML = '';
-  if (!items || items.length === 0) return;
-  
-  const topItems = items.slice(0, 3);
-  const otherItems = items.slice(3);
-  
-  const topTitle = document.createElement('div');
-  topTitle.className = 'section-title';
-  topTitle.innerHTML = 'Лучшие видеоуроки <span style="font-size: 18px; color: #b71c1c; font-family: \'Shantell Sans\'; vertical-align: middle; margin-left: 10px;">🔒 По подписке</span>';
-  resultsEl.appendChild(topTitle);
-  
-  const topGrid = document.createElement('div');
-  topGrid.className = 'video-list';
-  topItems.forEach(item => topGrid.appendChild(createVideoCard(item, true)));
-  resultsEl.appendChild(topGrid);
-
-  if (otherItems.length > 0) {
-    const otherTitle = document.createElement('div');
-    otherTitle.className = 'section-title';
-    otherTitle.textContent = 'Другие видеоуроки (Бесплатно)';
-    resultsEl.appendChild(otherTitle);
-    
-    const otherGrid = document.createElement('div');
-    otherGrid.className = 'video-list';
-    otherItems.forEach(item => otherGrid.appendChild(createVideoCard(item, false)));
-    resultsEl.appendChild(otherGrid);
-  }
-}
-
-function openVideo(item) {
-  if (item.embed) {
-    frame.src = item.embed;
-    openExternal.href = item.embed;
-    openExternal.style.display = 'inline';
-  } else {
-    frame.src = '';
-    openExternal.style.display = 'none';
-  }
-  windowTitle.textContent = item.title;
-  windowEl.classList.add('open');
-}
-
-function closeVideo() {
-  windowEl.classList.remove('open');
-  frame.src = '';
-}
-
-closeWindow.addEventListener('click', closeVideo);
-windowEl.addEventListener('click', e => { if (e.target === windowEl) closeVideo(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
-
-function showVpnWarning(source, callback) {
-  if (source === 'youtube') {
-    vpnTitle.textContent = 'Включите VPN';
-    vpnText.textContent = 'Для поиска видео на YouTube, пожалуйста, включите VPN. В противном случае поиск может не работать.';
-  } else {
-    vpnTitle.textContent = 'Выключите VPN';
-    vpnText.textContent = 'Для поиска видео на Rutube, пожалуйста, выключите VPN. Rutube может блокировать запросы с иностранных IP-адресов.';
-  }
-  vpnModal.classList.add('open');
-  const onCancel = () => { vpnModal.classList.remove('open'); cleanup(); };
-  const onContinue = () => { vpnModal.classList.remove('open'); callback(); cleanup(); };
-  function cleanup() {
-    vpnCancel.removeEventListener('click', onCancel);
-    vpnContinue.removeEventListener('click', onContinue);
-  }
-  vpnCancel.addEventListener('click', onCancel);
-  vpnContinue.addEventListener('click', onContinue);
-}
-
-payClose.addEventListener('click', () => payModal.classList.remove('open'));
-payModal.addEventListener('click', (e) => { if (e.target === payModal) payModal.classList.remove('open'); });
-
-trialBtn.addEventListener('click', () => {
-  localStorage.setItem('subscribedUntil', Date.now() + (3 * 24 * 60 * 60 * 1000));
-  isSubscribed = true;
-  payModal.classList.remove('open');
-  alert('Пробный период на 3 дня активирован! Наслаждайтесь премиум-доступом.');
-  doSearch();
-});
-
-payBtn.addEventListener('click', async () => {
-  payBtn.disabled = true;
-  payBtn.textContent = 'Загрузка...';
-  try {
-    const res = await fetch(`${PROXY}/create-payment`, { method: 'POST' });
-    const data = await res.json();
-    if (data.ok && data.url) {
-      window.location.href = data.url;
-    } else {
-      alert('Ошибка при создании платежа. Попробуйте позже.');
-      payBtn.disabled = false;
-      payBtn.textContent = 'Оформить за 49 ₽ / месяц';
-    }
-  } catch (e) {
-    alert('Ошибка сети. Проверьте подключение.');
-    payBtn.disabled = false;
-    payBtn.textContent = 'Оформить за 49 ₽ / месяц';
-  }
-});
-
-async function doSearch() {
-  const q = topicEl.value.trim();
-  const grade = gradeEl.value;
-  const source = getSource();
-
-  goEl.disabled = true;
-  goEl.textContent = 'Идёт поиск...';
-  showMessage('Загружаем данные, подождите.');
-
-  try {
-    const videoParams = new URLSearchParams({ q, grade, source, type: 'video' });
-    const videoResp = await fetch(`${PROXY}/?${videoParams}`);
-    const videoData = await videoResp.json();
-    if (videoData.ok) renderVideos(videoData.items);
-
-    if (source === 'youtube') {
-      const chanParams = new URLSearchParams({ q, source, type: 'channel', max: '6' });
-      const chanResp = await fetch(`${PROXY}/?${chanParams}`);
-      const chanData = await chanResp.json();
-      if (chanData.ok) renderChannels(chanData.items);
-    } else {
-      channelsBlock.style.display = 'none';
-    }
-
-    statusEl.style.display = 'none';
-
-  } catch (e) {
-    showMessage('Не удалось загрузить данные. Причина: ' + e.message);
-  } finally {
-    goEl.disabled = false;
-    goEl.textContent = 'Найти видеоуроки';
-  }
-}
-
-goEl.addEventListener('click', () => {
-  const q = topicEl.value.trim();
-  if (!q) {
-    showMessage('Введите тему урока. Например: «математика» или «дроби».');
-    topicEl.focus();
-    return;
-  }
-  const source = getSource();
-  showVpnWarning(source, doSearch);
-});
-
-topicEl.addEventListener('keydown', e => { if (e.key === 'Enter') goEl.click(); });
-</script>
-</body>
-</html>
+    <button class="pay-btn" id="payBtn">Оплатить</button>
+    <button class="pay-close" id="payClose">
